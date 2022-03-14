@@ -24,6 +24,7 @@ import {
   ShadowsocksrNodeConfig,
   SimpleNodeConfig,
   SnellNodeConfig,
+  WireguardNodeConfig,
   SortedNodeNameFilterType,
   VmessNodeConfig,
 } from '../types';
@@ -288,6 +289,18 @@ export const getSurgeNodes = function (
           ].join(' = ');
         }
 
+
+        case NodeTypeEnum.Wireguard: {
+          const config = nodeConfig as WireguardNodeConfig;
+          return [
+            config.nodeName,
+            [
+              'wireguard',
+              `section-name=wg_${config.nodeName}`
+            ].join(', '),
+          ].join(' = ');
+        }
+
         case NodeTypeEnum.Shadowsocksr: {
           const config = nodeConfig as ShadowsocksrNodeConfig;
 
@@ -546,6 +559,38 @@ export const getSurgeNodes = function (
               (nodeConfig as any).nodeName
             } 会被省略`,
           );
+          return void 0;
+      }
+    })
+    .filter((item): item is string => item !== undefined);
+
+  return result.join('\n');
+};
+export const getSurgeExtend = function (
+  list: ReadonlyArray<PossibleNodeConfigType>,
+  filter?: NodeFilterType | SortedNodeNameFilterType,
+): string {
+  // istanbul ignore next
+  if (arguments.length === 2 && typeof filter === 'undefined') {
+    throw new Error(ERR_INVALID_FILTER);
+  }
+
+  const result: string[] = applyFilter(list, filter)
+    .map((nodeConfig): string | undefined => {
+      switch (nodeConfig.type) {
+        case NodeTypeEnum.Wireguard: {
+          const config = nodeConfig as WireguardNodeConfig;
+          return [
+            `[WireGuard wg_${config.nodeName}]`,
+            `private-key = ${config.privateKey}`,
+            `self-ip = ${config.selfIp}`,
+            `dns-server = ${config.dns}`,
+            `mtu = ${config.mtu}`,
+            `peer = (public-key = ${config.publicKey}, allowed-ips = 0.0.0.0/0, endpoint = ${config.hostname})`
+          ].join('\n');
+        }
+        // istanbul ignore next
+        default:
           return void 0;
       }
     })

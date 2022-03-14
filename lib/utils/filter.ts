@@ -271,6 +271,9 @@ export const vmessFilter: NodeNameFilterType = (item) =>
 export const v2rayFilter: NodeNameFilterType = (item) =>
   item.type === NodeTypeEnum.Vmess;
 // istanbul ignore next
+export const wireguardFilter: NodeNameFilterType = (item) =>
+  item.type === NodeTypeEnum.Wireguard;
+// istanbul ignore next
 export const snellFilter: NodeNameFilterType = (item) =>
   item.type === NodeTypeEnum.Snell;
 // istanbul ignore next

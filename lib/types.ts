@@ -6,6 +6,7 @@ export enum NodeTypeEnum {
   Shadowsocks = 'shadowsocks',
   Shadowsocksr = 'shadowsocksr',
   Snell = 'snell',
+  Wireguard = 'wireguard',
   Vmess = 'vmess',
   Trojan = 'trojan',
   Socks5 = 'socks5',
@@ -210,6 +211,15 @@ export interface SnellNodeConfig extends SimpleNodeConfig {
   readonly 'obfs-host'?: string;
   readonly version?: string;
 }
+export interface WireguardNodeConfig extends SimpleNodeConfig {
+  readonly type: NodeTypeEnum.Wireguard;
+  readonly privateKey: string;
+  readonly mtu: number | string;
+  readonly dns: string;
+  readonly hostname: string;
+  readonly publicKey: string;
+  readonly selfIp: string;
+}
 
 export interface ShadowsocksrNodeConfig extends SimpleNodeConfig {
   readonly type: NodeTypeEnum.Shadowsocksr;
@@ -322,6 +332,7 @@ export type PossibleNodeConfigType =
   | ShadowsocksNodeConfig
   | ShadowsocksrNodeConfig
   | SnellNodeConfig
+  | WireguardNodeConfig
   | VmessNodeConfig
   | TrojanNodeConfig
   | Socks5NodeConfig;

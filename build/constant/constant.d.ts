@@ -1,0 +1,20 @@
+export declare const NETWORK_SURGIO_UA = "surgio";
+export declare const OBFS_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1";
+export declare const PROXY_TEST_URL = "http://cp.cloudflare.com/generate_204";
+export declare const PROXY_TEST_INTERVAL = 1200;
+export declare const CLASH_SUPPORTED_RULE: ReadonlyArray<string>;
+export declare const QUANTUMULT_X_SUPPORTED_RULE: ReadonlyArray<string>;
+export declare const LOON_SUPPORTED_RULE: ReadonlyArray<string>;
+export declare const MELLOW_UNSUPPORTED_RULE: ReadonlyArray<string>;
+export declare const CATEGORIES: {
+    SNIPPET: string;
+    SURGE: string;
+    QUANTUMULT_X: string;
+    QUANTUMULT_X_SERVER: string;
+    QUANTUMULT_X_FILTER: string;
+    QUANTUMULT_X_REWRITE: string;
+    CLASH: string;
+    LOON: string;
+};
+export declare const RELAY_SERVICE = "https://surgio-cors.herokuapp.com/";
+export declare const TMP_FOLDER_NAME = "surgio-config";

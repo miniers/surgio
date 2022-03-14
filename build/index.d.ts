@@ -1,0 +1,58 @@
+import 'source-map-support/register';
+import './utils/patch-proxy';
+import Command from 'common-bin';
+import { PackageJson } from 'type-fest';
+import * as filter from './utils/filter';
+declare const pkg: PackageJson;
+export declare class SurgioCommand extends Command {
+    constructor(rawArgv?: string[]);
+    errorHandler(err: any): void;
+}
+export declare const utils: {
+    isHeroku: () => boolean;
+    isNow: () => boolean;
+    isGitHubActions: () => boolean;
+    isGitLabCI: () => boolean;
+    SortFilterWithSortedFilters: typeof filter.SortFilterWithSortedFilters;
+    SortFilterWithSortedKeywords: typeof filter.SortFilterWithSortedKeywords;
+    validateFilter: (filter: any) => boolean;
+    mergeFilters: (filters: readonly import("./types").NodeNameFilterType[], isStrict?: boolean | undefined) => import("./types").NodeNameFilterType;
+    useKeywords: (keywords: readonly string[], isStrict?: boolean | undefined) => import("./types").NodeNameFilterType;
+    discardKeywords: (keywords: readonly string[], isStrict?: boolean | undefined) => import("./types").NodeNameFilterType;
+    useRegexp: (regexp: RegExp) => import("./types").NodeNameFilterType;
+    useProviders: (keywords: readonly string[], isStrict?: boolean) => import("./types").NodeNameFilterType;
+    discardProviders: (keywords: readonly string[], isStrict?: boolean) => import("./types").NodeNameFilterType;
+    useSortedKeywords: (keywords: readonly string[]) => import("./types").SortedNodeNameFilterType;
+    mergeSortedFilters: (filters: readonly import("./types").NodeNameFilterType[]) => import("./types").SortedNodeNameFilterType;
+    netflixFilter: import("./types").NodeNameFilterType;
+    usFilter: import("./types").NodeNameFilterType;
+    hkFilter: import("./types").NodeNameFilterType;
+    japanFilter: import("./types").NodeNameFilterType;
+    koreaFilter: import("./types").NodeNameFilterType;
+    singaporeFilter: import("./types").NodeNameFilterType;
+    taiwanFilter: import("./types").NodeNameFilterType;
+    chinaBackFilter: import("./types").NodeNameFilterType;
+    chinaOutFilter: import("./types").NodeNameFilterType;
+    youtubePremiumFilter: import("./types").NodeNameFilterType;
+    shadowsocksFilter: import("./types").NodeNameFilterType;
+    shadowsocksrFilter: import("./types").NodeNameFilterType;
+    vmessFilter: import("./types").NodeNameFilterType;
+    v2rayFilter: import("./types").NodeNameFilterType;
+    wireguardFilter: import("./types").NodeNameFilterType;
+    snellFilter: import("./types").NodeNameFilterType;
+    httpFilter: import("./types").NodeNameFilterType;
+    httpsFilter: import("./types").NodeNameFilterType;
+    trojanFilter: import("./types").NodeNameFilterType;
+    socks5Filter: import("./types").NodeNameFilterType;
+};
+export declare const categories: {
+    SNIPPET: string;
+    SURGE: string;
+    QUANTUMULT_X: string;
+    QUANTUMULT_X_SERVER: string;
+    QUANTUMULT_X_FILTER: string;
+    QUANTUMULT_X_REWRITE: string;
+    CLASH: string;
+    LOON: string;
+};
+export { pkg };
